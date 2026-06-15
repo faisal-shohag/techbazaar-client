@@ -12,17 +12,18 @@ import { Button, Drawer } from "@heroui/react";
 import { ChartArea, User2 } from "lucide-react";
 import { headers } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 import { BiMoney } from "react-icons/bi";
 import { TbAsset } from "react-icons/tb";
 
-export default async  function DashboardSidebar() {
-    const session = await auth.api.getSession({
-        headers: await headers()
-    })
+export default async function DashboardSidebar() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-    const user = session?.user
-    const role = user?.role || 'buyer'
-    // console.log(user)
+  const user = session?.user;
+  const role = user?.role || "buyer";
+  // console.log(user)
   const daashboardItems = {
     seller: [
       { icon: ChartArea, label: "Overview", link: "/dashboard/seller" },
@@ -55,17 +56,17 @@ export default async  function DashboardSidebar() {
     ],
   };
 
-  const navItems = daashboardItems[role]
+  const navItems = daashboardItems[role];
 
-  console.log(navItems)
-//   const navItems = [
-//     { icon: House, label: "Home" },
-//     { icon: Magnifier, label: "Search" },
-//     { icon: Bell, label: "Notifications" },
-//     { icon: Envelope, label: "Messages" },
-//     { icon: Person, label: "Profile" },
-//     { icon: Gear, label: "Settings" },
-//   ];
+  //   console.log(navItems)
+  // //   const navItems = [
+  // //     { icon: House, label: "Home" },
+  // //     { icon: Magnifier, label: "Search" },
+  // //     { icon: Bell, label: "Notifications" },
+  // //     { icon: Envelope, label: "Messages" },
+  // //     { icon: Person, label: "Profile" },
+  // //     { icon: Gear, label: "Settings" },
+  // //   ];
 
   return (
     <Drawer>
@@ -86,14 +87,16 @@ export default async  function DashboardSidebar() {
         </div>
 
         {navItems.map((item) => (
-          <button
-            key={item.label}
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
-            type="button"
-          >
-            <item.icon className="size-5 text-muted" />
-            {item.label}
-          </button>
+          <Link key={item.label} href={item.link}>
+            <button
+              key={item.label}
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
+              type="button"
+            >
+              <item.icon className="size-5 text-muted" />
+              {item.label}
+            </button>
+          </Link>
         ))}
       </nav>
 
@@ -107,14 +110,15 @@ export default async  function DashboardSidebar() {
             <Drawer.Body>
               <nav className="flex flex-col gap-1">
                 {navItems.map((item) => (
-                  <button
-                    key={item.label}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
-                    type="button"
-                  >
-                    <item.icon className="size-5 text-muted" />
-                    {item.label}
-                  </button>
+                  <Link key={item.label} href={item.link}>
+                    <button
+                      className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
+                      type="button"
+                    >
+                      <item.icon className="size-5 text-muted" />
+                      {item.label}
+                    </button>
+                  </Link>
                 ))}
               </nav>
             </Drawer.Body>
