@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const ProductCard = ({ product }) => {
   return (
@@ -39,9 +40,11 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         
+        <Link href={`/products/${product._id}`}>
         <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200">
-          Add to Cart
+         View Details
         </button>
+        </Link>
       </div>
     </div>
   );

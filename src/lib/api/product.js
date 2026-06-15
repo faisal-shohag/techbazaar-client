@@ -24,3 +24,9 @@ export const getAllProducts = async (search) => {
 
   return data;
 };
+
+export const getProductById = async (id) => {
+  const res = await fetch(`${baseURl}/product/${id}`);
+  const data = await res.json();
+  return data;
+};
